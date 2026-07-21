@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Waypoint People Co.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0D1B2A;
+    --navy-mid: #1A2E42;
+    --navy-light: #243C54;
+    --slate: #6B7C8D;
+    --slate-light: #C4CDD6;
+    --slate-lighter: #EEF1F4;
+    --gold: #B8933A;
+    --gold-light: #D4AC55;
+    --gold-pale: #F5EDD8;
+    --white: #FFFFFF;
+    --off-white: #F8F7F4;
+    --text-primary: #0D1B2A;
+    --text-secondary: #4A5A6A;
+    --text-muted: #8A9BAC;
+    --border: #DDE3E9;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-primary);
+    background: var(--white);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .serif { font-family: 'Cormorant Garamond', serif; }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(13, 27, 42, 0.97);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(184, 147, 58, 0.2);
+  }
+
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--white);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+
+  .logo span { color: var(--gold-light); }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--slate-light);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold-light); }
+
+  .nav-cta {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold-light) !important;
+    padding: 8px 20px;
+    border-radius: 2px;
+    transition: background 0.2s, color 0.2s !important;
+  }
+
+  .nav-cta:hover {
+    background: var(--gold) !important;
+    color: var(--navy) !important;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    padding: 120px 2rem 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -20%;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(184,147,58,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 5vw, 72px);
+    font-weight: 500;
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    color: var(--slate-light);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+    max-width: 480px;
+  }
+
+  .hero-paths {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 14px 32px;
+    border: none;
+    border-radius: 2px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    padding: 14px 32px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 2px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold-light); }
+
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .path-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px;
+    padding: 1.75rem 2rem;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+    cursor: pointer;
+  }
+
+  .path-card:hover {
+    border-color: rgba(184,147,58,0.4);
+    background: rgba(184,147,58,0.04);
+  }
+
+  .path-card-label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .path-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .path-card p {
+    font-size: 14px;
+    color: var(--slate-light);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .path-card-arrow {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--navy-mid);
+    border-top: 1px solid rgba(184,147,58,0.15);
+    border-bottom: 1px solid rgba(184,147,58,0.15);
+    padding: 2rem;
+  }
+
+  .stats-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 500;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--slate-light);
+    margin-top: 0.4rem;
+    font-weight: 400;
+  }
+
+  /* SECTIONS */
+  section { padding: 100px 2rem; }
+
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 52px);
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--navy);
+    margin-bottom: 1.25rem;
+  }
+
+  .section-sub {
+    font-size: 17px;
+    color: var(--text-secondary);
+    max-width: 580px;
+    line-height: 1.7;
+    font-weight: 300;
+    margin-bottom: 3.5rem;
+  }
+
+  /* FOR COMPANIES */
+  #companies { background: var(--off-white); }
+
+  .tiers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .tier-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2.25rem 2rem;
+    position: relative;
+  }
+
+  .tier-card.featured {
+    border-color: var(--gold);
+    border-width: 1.5px;
+  }
+
+  .tier-badge {
+    position: absolute;
+    top: -12px;
+    left: 2rem;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 2px;
+  }
+
+  .tier-icon {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--gold-pale);
+    background: var(--gold-pale);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .tier-icon svg { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+
+  .tier-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+
+  .tier-card p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+
+  .tier-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+  }
+
+  .tier-features li {
+    font-size: 13px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .tier-features li::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+
+  .btn-navy {
+    background: var(--navy);
+    color: var(--white);
+    padding: 12px 28px;
+    border: none;
+    border-radius: 2px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: inline-block;
+  }
+
+  .btn-navy:hover { background: var(--navy-mid); }
+
+  /* SERVICES */
+  #services { background: var(--white); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .service-item {
+    padding: 2rem 1.75rem;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+
+  .service-item:hover { background: var(--off-white); }
+  .service-item:nth-child(3n) { border-right: none; }
+  .service-item:nth-last-child(-n+3) { border-bottom: none; }
+
+  .service-tag {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+
+  .service-item h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+
+  .service-item p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .service-lead {
+    font-size: 11px;
+    color: var(--slate);
+    margin-top: 0.75rem;
+    font-style: italic;
+  }
+
+  /* FOR INDIVIDUALS */
+  #individuals { background: var(--navy); }
+  #individuals .section-title { color: var(--white); }
+  #individuals .section-sub { color: var(--slate-light); }
+  #individuals .eyebrow { color: var(--gold); }
+
+  .individual-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .ind-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px;
+    padding: 2rem;
+    transition: border-color 0.2s;
+  }
+
+  .ind-card:hover { border-color: rgba(184,147,58,0.35); }
+
+  .ind-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .ind-card p {
+    font-size: 14px;
+    color: var(--slate-light);
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+
+  .ind-tag {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+
+  /* INTAKE FORM */
+  .intake-form {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(184,147,58,0.25);
+    border-radius: 4px;
+    padding: 2.5rem;
+    margin-top: 2rem;
+  }
+
+  .intake-form h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .intake-form > p {
+    font-size: 14px;
+    color: var(--slate-light);
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group.full { grid-column: 1 / -1; }
+
+  .form-group label {
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--slate-light);
+    font-weight: 500;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 2px;
+    padding: 10px 14px;
+    color: var(--white);
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .form-group select option { background: var(--navy-mid); color: var(--white); }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--gold);
+  }
+
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  /* ABOUT */
+  #about { background: var(--off-white); }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 4rem;
+  }
+
+  .team-card {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .team-photo {
+    width: 160px;
+    height: 200px;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 2px;
+    filter: grayscale(15%);
+  }
+
+  .team-photo-placeholder {
+    width: 160px;
+    height: 200px;
+    background: var(--slate-lighter);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--slate);
+    font-size: 13px;
+  }
+
+  .team-info h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 0.25rem;
+  }
+
+  .team-title {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+  }
+
+  .team-creds {
+    font-size: 12px;
+    color: var(--slate);
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+
+  .team-bio {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-weight: 300;
+    margin-bottom: 1rem;
+  }
+
+  .team-leads {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 0.75rem;
+  }
+
+  .lead-tag {
+    font-size: 11px;
+    background: var(--gold-pale);
+    color: var(--gold);
+    border: 1px solid rgba(184,147,58,0.2);
+    padding: 3px 10px;
+    border-radius: 2px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  /* CASE STUDIES */
+  #cases { background: var(--white); }
+
+  .cases-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .case-card {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .case-card:hover { border-color: var(--gold); }
+
+  .case-top {
+    background: var(--navy);
+    padding: 1.5rem;
+  }
+
+  .case-industry {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+
+  .case-top h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1.3;
+  }
+
+  .case-body {
+    padding: 1.5rem;
+    background: var(--white);
+  }
+
+  .case-challenge {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--slate);
+    margin-bottom: 0.4rem;
+    font-weight: 500;
+  }
+
+  .case-body p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  .case-outcome {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--gold);
+    font-weight: 500;
+    font-style: italic;
+  }
+
+  /* CONTACT */
+  #contact { background: var(--navy); }
+  #contact .section-title { color: var(--white); }
+  #contact .section-sub { color: var(--slate-light); }
+  #contact .eyebrow { color: var(--gold); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .contact-info h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .contact-info p {
+    font-size: 15px;
+    color: var(--slate-light);
+    line-height: 1.7;
+    font-weight: 300;
+    margin-bottom: 2rem;
+  }
+
+  .contact-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  .contact-detail-item {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .contact-detail-item span:first-child {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    min-width: 80px;
+  }
+
+  .contact-detail-item span:last-child {
+    font-size: 14px;
+    color: var(--slate-light);
+  }
+
+  .company-form {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(184,147,58,0.25);
+    border-radius: 4px;
+    padding: 2.5rem;
+  }
+
+  .company-form h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+
+  .company-form .form-group input,
+  .company-form .form-group select,
+  .company-form .form-group textarea {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 2px;
+    padding: 10px 14px;
+    color: var(--white);
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+
+  .company-form .form-group select option { background: var(--navy-mid); }
+
+  .company-form .form-group input:focus,
+  .company-form .form-group select:focus,
+  .company-form .form-group textarea:focus { border-color: var(--gold); }
+
+  .company-form .form-group { margin-bottom: 1rem; }
+  .company-form .form-group textarea { min-height: 90px; resize: vertical; }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy-mid);
+    border-top: 1px solid rgba(184,147,58,0.15);
+    padding: 2.5rem 2rem;
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .footer-logo span { color: var(--gold-light); }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 12px;
+    color: var(--slate-light);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--gold-light); }
+
+  .footer-copy {
+    font-size: 12px;
+    color: var(--slate);
+  }
+
+  /* DIVIDER */
+  .gold-rule {
+    width: 48px;
+    height: 1px;
+    background: var(--gold);
+    margin: 1.5rem 0 2rem;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .tiers-grid { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .team-grid { grid-template-columns: 1fr; }
+    .team-card { grid-template-columns: 1fr; }
+    .individual-grid { grid-template-columns: 1fr; }
+    .cases-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .stats-inner { grid-template-columns: repeat(2, 1fr); }
+    .form-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">Waypoint <span>People Co.</span></a>
+    <ul class="nav-links">
+      <li><a href="#companies">For Companies</a></li>
+      <li><a href="#individuals">For Individuals</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#cases">Case Studies</a></li>
+      <li><a href="#contact" class="nav-cta">Book a Call</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <p class="hero-eyebrow">People · Operations · Enablement</p>
+      <h1>Strategy for your <em>organization.</em> Support for your <em>people.</em></h1>
+      <p class="hero-sub">Waypoint People Co. brings executive-level people strategy, operational expertise, and learning capability to organizations and individuals — without the full-time cost.</p>
+      <div class="hero-paths">
+        <a href="#companies" class="btn-primary">For Organizations</a>
+        <a href="#individuals" class="btn-outline">For Individuals</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <a href="#companies" class="path-card">
+        <p class="path-card-label">Organizations</p>
+        <h3>Build stronger teams and systems.</h3>
+        <p>From fractional CHRO leadership to targeted projects — people strategy that scales with your growth.</p>
+        <span class="path-card-arrow">Explore → </span>
+      </a>
+      <a href="#individuals" class="path-card">
+        <p class="path-card-label">Individuals</p>
+        <h3>Navigate your workplace with confidence.</h3>
+        <p>Whether you're an employee in a difficult situation or an HR professional who needs a thought partner — we're in your corner.</p>
+        <span class="path-card-arrow">Explore → </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div>
+      <div class="stat-num">20+</div>
+      <div class="stat-label">Years Combined Experience</div>
+    </div>
+    <div>
+      <div class="stat-num">3</div>
+      <div class="stat-label">Core Industry Specializations</div>
+    </div>
+    <div>
+      <div class="stat-num">4</div>
+      <div class="stat-label">Global Regions Served</div>
+    </div>
+    <div>
+      <div class="stat-num">2</div>
+      <div class="stat-label">Senior Partners, Zero Overhead</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOR COMPANIES -->
+<section id="companies">
+  <div class="section-inner">
+    <p class="eyebrow">For Organizations</p>
+    <h2 class="section-title">The right level of partnership,<br>for where you are right now.</h2>
+    <p class="section-sub">We work with companies at every stage — from startups building their first people infrastructure to established teams navigating complex change.</p>
+
+    <div class="tiers-grid">
+      <div class="tier-card">
+        <div class="tier-icon">
+          <svg viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <h3>Ad Hoc Support</h3>
+        <p>Expert guidance on a specific situation — a difficult termination, a policy gap, a leadership conflict. Fast, targeted, and actionable.</p>
+        <ul class="tier-features">
+          <li>Same-week engagement</li>
+          <li>Single-issue scope</li>
+          <li>Written summary and recommendations</li>
+          <li>Flat-rate pricing</li>
+        </ul>
+        <a href="#contact" class="btn-navy">Get a Quote</a>
+      </div>
+
+      <div class="tier-card featured">
+        <div class="tier-badge">Most Popular</div>
+        <div class="tier-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+        </div>
+        <h3>Project-Based</h3>
+        <p>A defined scope with a clear outcome — org redesign, a new performance management framework, leading a change initiative, or launching an enablement program.</p>
+        <ul class="tier-features">
+          <li>Scoped kickoff and discovery</li>
+          <li>Dedicated project lead</li>
+          <li>Deliverables with implementation support</li>
+          <li>Milestone-based engagement</li>
+        </ul>
+        <a href="#contact" class="btn-navy">Get a Quote</a>
+      </div>
+
+      <div class="tier-card">
+        <div class="tier-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 10-16 0"/></svg>
+        </div>
+        <h3>Fractional CHRO</h3>
+        <p>An embedded senior people leader without the full-time cost. Strategic partnership at the executive level — present for the decisions that shape your organization.</p>
+        <ul class="tier-features">
+          <li>Ongoing monthly retainer</li>
+          <li>Seat at the leadership table</li>
+          <li>Full people strategy ownership</li>
+          <li>Scales with your headcount and complexity</li>
+        </ul>
+        <a href="#contact" class="btn-navy">Get a Quote</a>
+      </div>
+    </div>
+
+    <div style="background: var(--white); border: 1px solid var(--border); border-radius: 4px; padding: 2rem 2.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: gap;">
+      <div>
+        <p style="font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 0.4rem;">Industries We Know Well</p>
+        <p style="font-size: 15px; color: var(--text-secondary); font-weight: 300;">Tech & SaaS &nbsp;·&nbsp; Healthcare & Life Sciences &nbsp;·&nbsp; Financial Technology &nbsp;·&nbsp; Professional Services &nbsp;·&nbsp; Logistics</p>
+      </div>
+      <a href="#contact" class="btn-primary" style="white-space: nowrap; margin-left: 2rem;">Book a Call</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <p class="eyebrow">What We Do</p>
+    <h2 class="section-title">Six areas of expertise.<br>One integrated team.</h2>
+    <p class="section-sub">We don't hand you a framework and walk away. Every engagement is led by a senior partner with direct accountability for outcomes.</p>
+
+    <div class="services-grid">
+      <div class="service-item">
+        <p class="service-tag">People Strategy</p>
+        <h3>Change Management</h3>
+        <p>Structured, human-centered approaches to transformation — mergers, reorgs, leadership transitions, and culture shifts. We lead the change, not just advise on it.</p>
+        <p class="service-lead">Led by Kasey · Prosci Certified</p>
+      </div>
+      <div class="service-item">
+        <p class="service-tag">Learning & Enablement</p>
+        <h3>L&D & Enablement</h3>
+        <p>Learning ecosystems that actually move the needle — onboarding programs, competency models, manager enablement, and AI upskilling initiatives built for scale.</p>
+        <p class="service-lead">Led by Brogan</p>
+      </div>
+      <div class="service-item">
+        <p class="service-tag">Organizational Performance</p>
+        <h3>Leadership Development</h3>
+        <p>Building leaders at every level — coaching, feedback culture, leadership presence, and development programs grounded in how real teams function.</p>
+        <p class="service-lead">Led jointly</p>
+      </div>
+      <div class="service-item">
+        <p class="service-tag">People Strategy</p>
+        <h3>Organizational Design</h3>
+        <p>Structuring teams and roles for clarity, efficiency, and growth — from startup org charts to complex multi-regional workforce models.</p>
+        <p class="service-lead">Led by Kasey</p>
+      </div>
+      <div class="service-item">
+        <p class="service-tag">Employee Experience</p>
+        <h3>Employee Relations</h3>
+        <p>Expert navigation of complex workplace dynamics — investigations, conflict resolution, performance issues, and policy frameworks that protect and respect everyone.</p>
+        <p class="service-lead">Led by Kasey · SPHR, GPHR</p>
+      </div>
+      <div class="service-item">
+        <p class="service-tag">Operations & Systems</p>
+        <h3>People Operations</h3>
+        <p>Building the infrastructure of a high-performing people function — HRIS selection, GTM readiness, process design, and tech stack optimization.</p>
+        <p class="service-lead">Led by Brogan</p>
+      </div>
+      <div class="service-item">
+        <p class="service-tag">Talent</p>
+        <h3>Talent Acquisition</h3>
+        <p>Recruiting strategy and execution for high-priority roles — from sourcing frameworks to full-cycle hiring support across technical, clinical, and operational domains.</p>
+        <p class="service-lead">Led by Kasey</p>
+      </div>
+      <div class="service-item">
+        <p class="service-tag">Global Expansion</p>
+        <h3>Global People Ops</h3>
+        <p>Expanding into new markets requires more than compliance. We've built people functions across EMEA, APAC, and the Americas — and know what breaks if you skip steps.</p>
+        <p class="service-lead">Led jointly</p>
+      </div>
+      <div class="service-item">
+        <p class="service-tag">Compliance & Risk</p>
+        <h3>HR Compliance</h3>
+        <p>Regulatory compliance, policy development, risk mitigation, and audit-readiness — including GDPR, EEO, and sector-specific requirements in healthcare and financial services.</p>
+        <p class="service-lead">Led by Kasey · GPHR</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR INDIVIDUALS -->
+<section id="individuals">
+  <div class="section-inner">
+    <p class="eyebrow">For Individuals</p>
+    <h2 class="section-title">You don't have to<br><em class="serif" style="font-style:italic;">figure it out alone.</em></h2>
+    <p class="section-sub">Whether you're an employee navigating a difficult workplace situation or an HR professional who needs a senior thought partner — we offer real guidance, not generic advice.</p>
+
+    <div class="individual-grid">
+      <div class="ind-card">
+        <p class="ind-tag">For Employees</p>
+        <h3>Navigating Workplace Situations</h3>
+        <p>A PIP you didn't see coming. A conflict with your manager. A negotiation you're not sure how to handle. We'll help you understand your options and approach with confidence.</p>
+        <p style="font-size: 13px; color: var(--slate-light); font-style: italic; font-weight: 300;">Performance improvement plans · Exit negotiations · Manager conflict · Wrongful treatment · Career transitions</p>
+      </div>
+      <div class="ind-card">
+        <p class="ind-tag">For HR Professionals</p>
+        <h3>Senior Peer Consultation</h3>
+        <p>A complex investigation. An org design decision you're second-guessing. A leadership team that isn't listening. Get a senior HR thought partner who's been there — and can help you think it through.</p>
+        <p style="font-size: 13px; color: var(--slate-light); font-style: italic; font-weight: 300;">ER case strategy · Investigation support · Stakeholder navigation · Strategic HR counsel</p>
+      </div>
+    </div>
+
+    <div class="individual-grid" style="margin-top: 0;">
+      <div class="ind-card">
+        <p class="ind-tag">Ad Hoc</p>
+        <h3>One Question. Real Answer.</h3>
+        <p>Submit your situation and get a focused, actionable response from a senior people professional. No retainer, no commitment — just the clarity you need.</p>
+      </div>
+      <div class="ind-card">
+        <p class="ind-tag">Project-Based</p>
+        <h3>Ongoing Support Through a Defined Situation</h3>
+        <p>For situations that unfold over time — a PIP process, an exit negotiation, a workplace conflict — we'll partner with you through to resolution.</p>
+      </div>
+    </div>
+
+    <div class="intake-form">
+      <h3>Tell us about your situation</h3>
+      <p>We'll review your submission and reach out within one business day.</p>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" placeholder="Your first name">
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="Your last name">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label>I am a...</label>
+          <select>
+            <option value="">Select one</option>
+            <option>Employee navigating a workplace situation</option>
+            <option>HR professional seeking peer consultation</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label>What's going on?</label>
+          <textarea placeholder="Share as much or as little as you're comfortable with. All submissions are confidential."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Engagement Type</label>
+          <select>
+            <option value="">Select one</option>
+            <option>Ad Hoc — one question or situation</option>
+            <option>Project-Based — ongoing support</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Preferred Contact Method</label>
+          <select>
+            <option value="">Select one</option>
+            <option>Email</option>
+            <option>Phone call</option>
+            <option>Video call</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn-primary" style="margin-top: 0.5rem;">Submit — We'll Be in Touch</button>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <p class="eyebrow">Who We Are</p>
+    <h2 class="section-title">Two senior partners.<br>No associates. No handoffs.</h2>
+    <p class="section-sub">When you engage Waypoint People Co., you work directly with Kasey or Brogan — not a junior team member billing at a senior rate.</p>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <img src="/mnt/user-data/uploads/096-6hoXOEhIQdo__1_.jpeg" alt="Kasey Dudley" class="team-photo">
+        <div class="team-info">
+          <p class="team-title">Co-Founder & Senior People Partner</p>
+          <h3>Kasey Dudley</h3>
+          <p class="team-creds">SPHR · GPHR · PHR · Prosci Certified Change Practitioner</p>
+          <p class="team-bio">Kasey is a senior people strategist with deep expertise building and scaling people functions from the ground up. She has led HR for organizations across healthcare, biotech, and high-growth tech — serving as a trusted advisor at the CEO and executive level. She has managed teams of 7+ and navigated some of the most complex people situations organizations face, from crisis management to global expansion.</p>
+          <div class="team-leads">
+            <span class="lead-tag">Change Management</span>
+            <span class="lead-tag">Employee Relations</span>
+            <span class="lead-tag">Org Design</span>
+            <span class="lead-tag">Talent Acquisition</span>
+            <span class="lead-tag">Fractional CHRO</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <img src="/mnt/user-data/uploads/1784660002308_image.png" alt="Brogan Lozano" class="team-photo">
+        <div class="team-info">
+          <p class="team-title">Co-Founder & Operations & Enablement Partner</p>
+          <h3>Brogan Lozano</h3>
+          <p class="team-creds">B.F.A. Theatre Performance · Global L&D & GTM Leader</p>
+          <p class="team-bio">Brogan brings a rare combination of learning design, operations, and go-to-market expertise honed across global SaaS and fintech environments. She has led organizations of 23, built learning ecosystems that span North America, EMEA, and APAC, and driven measurable outcomes in onboarding, enablement, and AI upskilling. Her theatre background makes her a uniquely effective facilitator and leadership presence coach.</p>
+          <div class="team-leads">
+            <span class="lead-tag">L&D & Enablement</span>
+            <span class="lead-tag">GTM Readiness</span>
+            <span class="lead-tag">AI Upskilling</span>
+            <span class="lead-tag">People Operations</span>
+            <span class="lead-tag">Onboarding Design</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section id="cases">
+  <div class="section-inner">
+    <p class="eyebrow">Case Studies</p>
+    <h2 class="section-title">Real situations.<br>Real outcomes.</h2>
+    <p class="section-sub">All case studies are anonymized. These represent the types of challenges we navigate with clients — and what becomes possible when the right expertise is in the room.</p>
+
+    <div class="cases-grid">
+      <div class="case-card">
+        <div class="case-top">
+          <p class="case-industry">Tech & SaaS · Change Management</p>
+          <h3>Scaling through 400% headcount growth without losing the culture</h3>
+        </div>
+        <div class="case-body">
+          <p class="case-challenge">The Challenge</p>
+          <p>A Series B company needed to scale from 40 to 200 employees in 18 months while maintaining the culture and psychological safety that defined their early team.</p>
+          <p class="case-outcome">Outcome: Less than 5% attrition through the growth period. Structured performance management, compensation philosophy, and manager enablement launched from scratch.</p>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-top">
+          <p class="case-industry">Healthcare · L&D & Enablement</p>
+          <h3>Reducing GTM lead time by 37% with a new readiness operating model</h3>
+        </div>
+        <div class="case-body">
+          <p class="case-challenge">The Challenge</p>
+          <p>A global clinical organization's product launches were stalled by misalignment between Engineering, Product, and Revenue teams — costing months of go-to-market time.</p>
+          <p class="case-outcome">Outcome: GTM lead time reduced from 3 months to 8 weeks. Unified readiness model adopted across four regions.</p>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-top">
+          <p class="case-industry">Individual · Employee Relations</p>
+          <h3>Navigating a performance improvement plan — and coming out stronger</h3>
+        </div>
+        <div class="case-body">
+          <p class="case-challenge">The Challenge</p>
+          <p>A mid-level manager at a professional services firm received a PIP they believed was retaliatory. They needed an expert to help them understand their rights and respond strategically.</p>
+          <p class="case-outcome">Outcome: Client successfully negotiated terms, documented their performance, and ultimately transitioned to a senior role at a new company with a strong exit package.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <p class="eyebrow">Get in Touch</p>
+    <h2 class="section-title">Let's find your waypoint.</h2>
+    <p class="section-sub">Not sure which engagement model is right for you? Book a free 30-minute consultation and we'll figure it out together.</p>
+
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>A conversation costs nothing.<br>The right people strategy is worth everything.</h3>
+        <p>We work with companies across industries and at every stage of growth — and with individuals navigating some of the most stressful moments of their careers. Whoever you are, we'll be direct, thoughtful, and genuinely useful.</p>
+        <div class="gold-rule"></div>
+        <div class="contact-detail">
+          <div class="contact-detail-item">
+            <span>Based in</span>
+            <span>Austin, TX — serving clients globally</span>
+          </div>
+          <div class="contact-detail-item">
+            <span>Response</span>
+            <span>Within one business day</span>
+          </div>
+          <div class="contact-detail-item">
+            <span>Consultation</span>
+            <span>30 minutes, no cost, no commitment</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="company-form">
+        <h3>Book a free consultation</h3>
+        <div class="form-group">
+          <label style="font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--slate-light); font-weight: 500; margin-bottom: 6px; display: block;">Your Name</label>
+          <input type="text" placeholder="Full name">
+        </div>
+        <div class="form-group">
+          <label style="font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--slate-light); font-weight: 500; margin-bottom: 6px; display: block;">Company / Organization</label>
+          <input type="text" placeholder="Where do you work?">
+        </div>
+        <div class="form-group">
+          <label style="font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--slate-light); font-weight: 500; margin-bottom: 6px; display: block;">Email</label>
+          <input type="email" placeholder="your@company.com">
+        </div>
+        <div class="form-group">
+          <label style="font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--slate-light); font-weight: 500; margin-bottom: 6px; display: block;">What brings you here?</label>
+          <select>
+            <option value="">Select one</option>
+            <option>Ad Hoc Support</option>
+            <option>Project-Based Engagement</option>
+            <option>Fractional CHRO</option>
+            <option>Not sure yet — let's talk</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label style="font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--slate-light); font-weight: 500; margin-bottom: 6px; display: block;">Tell us more (optional)</label>
+          <textarea placeholder="A brief description of your situation or what you're looking for..."></textarea>
+        </div>
+        <button class="btn-primary" style="width: 100%; text-align: center; justify-content: center;">Request a Consultation</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Waypoint <span>People Co.</span></div>
+    <ul class="footer-links">
+      <li><a href="#companies">Companies</a></li>
+      <li><a href="#individuals">Individuals</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <p class="footer-copy">© 2026 Waypoint People Co.</p>
+  </div>
+</footer>
+
+</body>
+</html>
